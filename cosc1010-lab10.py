@@ -1,8 +1,8 @@
-# Your Name Here
+# Patrick McGrath
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# Submission Date: 11/24/2024
+# Lab 10
+# Lab Section: 12
 # Sources, people worked with, help given to: 
 # your
 # comments
@@ -17,6 +17,32 @@ def get_hash(to_hash):
     """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
 
+
+hash_path = Path("hash")
+
+try:
+    hash_read = hash_path.read_text()
+
+except:
+    print("File is not found.")
+else:
+    hash_read = hash_read.strip()
+
+
+passwords = Path("rockyou.txt")
+
+try:
+    passwords_read = passwords.read_text()
+except:
+    print("File not found.")
+else:
+    pass_word = passwords_read.splitlines()
+
+
+for passw in pass_word:
+    if get_hash(passw.strip()) == hash_read:
+        print(passw)
+        break
 
 
 # Files and Exceptions
